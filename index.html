@@ -3,243 +3,587 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculus 2 From Zero · Shriyash Ghimire</title>
-  <meta name="description" content="A free, start-from-zero guide to Calculus 2, with all the Calc 1 you need. Every chapter explains why the idea exists before any formula, with worked examples, practice with hints, and answers. CC BY 4.0.">
-  <meta property="og:title" content="You think you're F.*ked at calculus. You're not.">
-  <meta property="og:description" content="Calculus 2 From Zero: a free, start-from-zero guide to Calc 2, with all the Calc 1 you need.">
+  <title>Calculus 2 From Zero · a free book by Shriyash Ghimire</title>
+  <meta name="description" content="A free 209-page book that teaches Calculus 2 from zero, with the Calc 1 you need built in. Every chapter starts with why the idea exists before any formula. CC BY 4.0.">
+  <meta property="og:title" content="Calculus 2 From Zero">
+  <meta property="og:description" content="A free 209-page book: Calculus 2 from zero, with the Calc 1 you need built in. Why before formula, every chapter.">
   <meta property="og:type" content="book">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%233c4696'/><text x='16' y='25' font-size='24' text-anchor='middle' fill='%23f2b705' font-family='serif'>∫</text></svg>">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23009688'/><path d='M7 22 L25 12' stroke='white' stroke-width='2.4' stroke-linecap='round'/><circle cx='16' cy='17' r='3.4' fill='%23009688' stroke='white' stroke-width='2.2'/></svg>">
+  <link rel="preload" href="/fonts/texgyrebonum-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/poppins-bold.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    @font-face { font-family: "Bonum"; src: url("/fonts/texgyrebonum-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Bonum"; src: url("/fonts/texgyrebonum-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: "Bonum"; src: url("/fonts/texgyrebonum-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Poppins"; src: url("/fonts/poppins-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+    /* The book's own palette, sampled from the PDF. */
     :root {
-      --theme: rgb(60, 70, 150);
-      --theme-dark: rgb(34, 40, 92);
-      --accent: #f2b705;
-      --ink: #1d1d24;
-      --muted: #5b5d70;
-      --paper: #f7f7fb;
-      --rule: #dcdde8;
-      --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
-      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --paper: #ffffff;
+      --ink: #262228;
+      --muted: #646165;
+      --rule: #e1e0e1;
+      --teal: #009688;
+      --teal-ink: #00796b;
+      --key: #154c7c;     --key-bg: #eff4f8;
+      --try: #166c3a;     --try-bg: #edf5f0;
+      --warn: #aa480d;    --warn-bg: #fbf1ec;
+      --serif: "Bonum", "TeX Gyre Bonum", "Bookman Old Style", "URW Bookman", Georgia, serif;
+      --sans: "Poppins", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+      --measure: 41rem;
+      --step: clamp(3.5rem, 8vw, 6rem);
+      color-scheme: light dark;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --ink: #e8e8f0;
-        --muted: #a3a5bd;
-        --paper: #14151f;
-        --rule: #2c2e44;
-        --theme: rgb(140, 150, 230);
+        --paper: #1b191d;
+        --ink: #e9e6ea;
+        --muted: #a8a3aa;
+        --rule: #3a363c;
+        --teal: #3cc2b2;
+        --teal-ink: #5fd3c5;
+        --key: #8db8de;     --key-bg: #1f2833;
+        --try: #79c79a;     --try-bg: #1d2a22;
+        --warn: #e8956a;    --warn-bg: #2f221c;
       }
     }
+
     * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: var(--serif);
-      font-size: 1.125rem;
-      line-height: 1.65;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 1.1875rem/1.62 var(--serif);
+      font-feature-settings: "kern", "liga", "lnum";
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { background: color-mix(in srgb, var(--teal) 28%, transparent); }
+    a { color: var(--teal-ink); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+    em, i { font-style: italic; }
+    .m { font-style: italic; white-space: nowrap; }           /* a math variable */
+    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .82em; line-height: 1.15; margin: 0 .12em; }
+    .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 .2em .05em; }
+    .frac > span:last-child { padding: .05em .2em 0; }
+
+    .page { max-width: var(--measure); margin: 0 auto; padding: 0 1.4rem; }
+
+    /* Running header, as on every page of the book */
+    .running {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      font: 400 .875rem/1.4 var(--sans); font-weight: 700;
+      padding: 1.6rem 0 .45rem;
+      border-bottom: 1px solid var(--ink);
+    }
+    .running a { text-decoration: none; }
+    .running .book { color: var(--teal-ink); }
+    .running .site { color: var(--muted); font-weight: 700; }
+    .running .site:hover { color: var(--ink); }
+
+    h1, h2, h3 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+    h1 {
+      font-size: clamp(2.6rem, 8.4vw, 4.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: clamp(2.5rem, 7vw, 4rem) 0 .9rem;
+      color: var(--ink);
+    }
+    h1 .from { color: var(--teal); display: block; }
+    .subtitle { font-style: italic; font-size: 1.3rem; line-height: 1.45; color: var(--ink); margin: 0 0 1.4rem; max-width: 34rem; }
+    .byline { font: 700 .95rem/1.4 var(--sans); margin: 0 0 2rem; }
+    .byline span { color: var(--muted); font-weight: 700; }
+
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin: 0 0 .7rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font: 700 1rem/1 var(--sans);
+      padding: .95rem 1.35rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color .2s cubic-bezier(.16,1,.3,1), color .2s, box-shadow .2s;
+    }
+    .btn svg { width: 1.05em; height: 1.05em; flex: none; }
+    .btn-primary { background: var(--teal-ink); color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .14), 0 3px 8px -3px rgb(0 0 0 / .18); }
+    .btn-primary:hover { background: color-mix(in srgb, var(--teal-ink) 86%, #000); text-decoration: none; }
+    .btn-plain { color: var(--teal-ink); padding-left: .2rem; padding-right: .2rem; }
+    .btn-plain:hover { text-decoration: underline; }
+    @media (prefers-color-scheme: dark) { .btn-primary { color: #0f1f1d; } }
+    .facts { font: 400 .875rem/1.5 var(--sans); font-weight: 700; color: var(--muted); margin: 0; }
+    .facts span + span::before { content: "·"; margin: 0 .5em; }
+
+    .lead { margin: clamp(2.5rem, 6vw, 3.5rem) 0 0; font-size: 1.25rem; }
+    .lead p { margin: 0 0 1em; }
+    .lead strong { font-weight: 700; }
+
+    /* Section headings: Poppins, teal, hairline under, as in the book */
+    h2 {
+      font-size: clamp(1.55rem, 4vw, 1.9rem);
+      line-height: 1.2;
+      color: var(--teal-ink);
+      margin: var(--step) 0 1rem;
+      padding-bottom: .35rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+    }
+    p { margin: 0 0 1em; hanging-punctuation: first; }
+
+    /* The book's boxes: coloured header strip + tinted body, rounded, 1px outline */
+    .box { border: 1.5px solid var(--c); border-radius: 12px; background: var(--bg); margin: 1.8rem 0; overflow: hidden; }
+    .box > .box-head {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--c); color: var(--paper);
+      font: 700 .98rem/1.3 var(--sans);
+      padding: .6rem 1.35rem;
+    }
+    .box > .box-head svg { width: 1.05em; height: 1.05em; flex: none; }
+    .box > .box-body { padding: 1.15rem 1.35rem .3rem; }
+    .key { --c: var(--key); --bg: var(--key-bg); }
+    .try { --c: var(--try); --bg: var(--try-bg); }
+    .warn { --c: var(--warn); --bg: var(--warn-bg); }
+
+    .display-math { text-align: center; margin: .3rem 0 1.1rem; font-size: 1.2rem; }
+
+    /* The try-it tables: one column of inputs per side */
+    .tables { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem clamp(1.5rem, 6vw, 4rem); margin: .4rem 0 1.2rem; }
+    .limit-table { border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+    .limit-table caption { font: 700 .85rem/1.3 var(--sans); color: var(--try); padding-bottom: .45rem; white-space: nowrap; }
+    .limit-table caption .m { font-family: var(--serif); font-weight: 400; }
+    .limit-table th { font-weight: 400; padding: .25rem .8rem; border-bottom: 1px solid var(--ink); }
+    .limit-table td { padding: .3rem .8rem; text-align: center; }
+    .limit-table th:first-child, .limit-table td:first-child { border-right: 1px solid var(--ink); text-align: right; }
+    .cell input {
+      width: 5.2rem;
+      font: inherit; font-variant-numeric: tabular-nums;
+      text-align: center;
       color: var(--ink);
       background: var(--paper);
+      border: 1px solid color-mix(in srgb, var(--try) 45%, var(--rule));
+      border-radius: 6px;
+      padding: .2rem .2rem;
+      transition: border-color .25s, background-color .25s;
     }
-    a { color: var(--theme); }
-    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .cell input::placeholder { color: var(--muted); }
+    .cell input:focus-visible { outline: 2px solid var(--try); outline-offset: 1px; }
+    .cell[data-state="right"] input { border-color: var(--try); background: color-mix(in srgb, var(--try) 12%, var(--paper)); }
+    .cell[data-state="wrong"] input { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 10%, var(--paper)); }
+    .try-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin: 0 0 1rem; }
+    .try-controls button {
+      font: 700 .9rem/1 var(--sans);
+      padding: .7rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1.5px solid var(--try);
+      background: var(--try); color: var(--paper);
+      transition: background-color .2s, color .2s;
+    }
+    .try-controls button.secondary { background: transparent; color: var(--try); }
+    .try-controls button:hover { background: color-mix(in srgb, var(--try) 85%, #000); color: var(--paper); }
+    .try-controls button:disabled { opacity: .5; cursor: default; }
+    .feedback { font-size: 1rem; color: var(--muted); margin: 0; min-height: 1.6em; }
+    .feedback.ok { color: var(--try); }
 
-    /* ---------- hero: echoes the book's cover ---------- */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: #fff;
-      background-color: var(--theme-dark);
-      background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 36px 36px;
-      border-left: 14px solid var(--accent);
-    }
-    .hero::after {
-      content: "∫";
-      position: absolute;
-      right: -0.05em;
-      top: -0.2em;
-      font-size: clamp(14rem, 34vw, 26rem);
-      line-height: 1;
-      color: rgba(255,255,255,.06);
-      pointer-events: none;
-    }
-    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
-    .hero .wrap { position: relative; z-index: 1; padding-top: 4.5rem; padding-bottom: 4rem; }
-    .kicker {
-      font-family: var(--mono);
-      font-size: .8rem;
-      color: var(--accent);
-      margin: 0 0 1.25rem;
-    }
-    h1 {
-      font-size: clamp(2.2rem, 6vw, 3.4rem);
-      line-height: 1.1;
-      margin: 0 0 .4em;
-      font-weight: 700;
-    }
-    h1 span { display: block; color: var(--accent); }
-    .lede { font-size: 1.2rem; max-width: 36rem; color: #dfe1f5; margin: 0 0 2rem; }
-    .byline { font-family: var(--mono); font-size: .85rem; color: #b9bce0; margin: 0 0 2rem; }
-    .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-    .btn {
-      display: inline-block;
-      padding: .75rem 1.3rem;
-      border-radius: 4px;
-      font-family: var(--mono);
-      font-size: .9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform .12s ease;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--accent); color: #1d1d24; }
-    .btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
-    .meta { font-family: var(--mono); font-size: .75rem; color: #9fa3d1; margin-top: 1rem; }
+    figure { margin: 2rem 0; }
+    figcaption { font-style: italic; font-size: .95rem; color: var(--ink); text-align: center; margin-top: .6rem; }
+    .graph { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0 auto; overflow: visible; }
+    .graph text { font-family: var(--serif); fill: var(--ink); }
+    .graph .axis { stroke: var(--muted); stroke-width: 1; }
+    .graph .curve { stroke: var(--teal); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .graph .guide { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; }
+    .graph .hole { fill: var(--paper); stroke: var(--teal); stroke-width: 2.2; }
+    .graph .walker { fill: var(--try); opacity: 0; }
+    .graph.walking .walker { opacity: 1; }
+    .source { font: 700 .8rem/1.4 var(--sans); color: var(--muted); text-align: right; margin: -.5rem 0 0; }
 
-    /* ---------- body ---------- */
-    main section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
-    main section:last-child { border-bottom: 0; }
-    .label {
-      font-family: var(--mono);
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--theme);
-      margin: 0 0 .5rem;
-    }
-    h2 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 1rem; }
-    h3 { font-size: 1.15rem; margin: 2rem 0 .25rem; }
-    h3 small { font-family: var(--mono); font-size: .75rem; font-weight: 400; color: var(--muted); margin-left: .4rem; }
-    ol.chapters { list-style: none; padding: 0; margin: .5rem 0 0; }
-    ol.chapters li {
+    /* Real pages from the PDF */
+    .pages {
       display: grid;
-      grid-template-columns: 3.6rem 1fr;
-      gap: .75rem;
-      padding: .55rem 0;
-      border-top: 1px dashed var(--rule);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(.9rem, 2.4vw, 1.6rem);
+      margin: 2rem calc(50% - min(50vw, 33rem) + 1.4rem) 0;
+      padding: 0;
+      list-style: none;
     }
-    ol.chapters .num { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding-top: .2rem; }
-    ol.chapters strong { display: block; font-weight: 600; }
-    ol.chapters span.what { color: var(--muted); font-size: 1rem; }
-    .callout { border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1rem; margin: 1.25rem 0; }
-    footer { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding: 2rem 0 3rem; }
-    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    .pages a { display: block; text-decoration: none; color: var(--ink); }
+    .pages img {
+      display: block; width: 100%; height: auto; aspect-ratio: 880 / 1138;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 10px 28px -12px rgb(0 0 0 / .28);
+      transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s cubic-bezier(.16,1,.3,1);
+    }
+    .pages a:hover img { transform: translateY(-4px); box-shadow: 0 2px 4px rgb(0 0 0 / .08), 0 22px 40px -16px rgb(0 0 0 / .32); }
+    .pages .cap { display: block; font-size: .95rem; line-height: 1.4; margin-top: .8rem; }
+    .pages .cap b { font: 700 .8rem/1.4 var(--sans); color: var(--muted); display: block; }
+    @media (max-width: 720px) {
+      .pages { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 2rem -1.4rem 0; padding: 0 1.4rem 1rem; }
+      .pages li { scroll-snap-align: center; }
+    }
+
+    /* Contents page, set like the book's */
+    .toc { margin: 1rem 0 0; }
+    .toc h3 { font-size: 1rem; margin: 2rem 0 .3rem; display: flex; justify-content: space-between; color: var(--ink); }
+    .toc h3 .pg { color: var(--muted); }
+    .toc ol { list-style: none; margin: 0; padding: 0; }
+    .toc li a {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: baseline;
+      gap: .45rem;
+      padding: .32rem 0;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .toc li a::after { content: none; }
+    .toc .leader { border-bottom: 1.5px dotted color-mix(in srgb, var(--muted) 70%, transparent); transform: translateY(-.3em); min-width: 1rem; }
+    .toc .pg { font-variant-numeric: tabular-nums lining-nums; color: var(--muted); }
+    .toc .ch { font: 700 .78rem/1 var(--sans); color: var(--muted); margin-right: .45rem; }
+    .toc .what { display: block; font-size: .95rem; color: var(--muted); font-style: italic; }
+    .toc li a:hover .title { color: var(--teal-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+    .toc li a:hover .pg { color: var(--teal-ink); }
+
+    /* The anatomy of a chapter, using the book's own box colours */
+    .anatomy { margin: 1rem 0 0; padding: 0; }
+    .anatomy div { display: grid; grid-template-columns: 11.5rem 1fr; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--rule); }
+    .anatomy div:last-child { border-bottom: 1px solid var(--rule); }
+    .anatomy dt { margin: 0; }
+    .anatomy dd { margin: 0; }
+    .tag { display: inline-block; font: 700 .85rem/1 var(--sans); color: var(--paper); background: var(--c); border-radius: 6px; padding: .45rem .65rem; }
+    .tag.see { --c: #4b4f9e; }
+    .tag.video { --c: #6b4a8a; }
+    .tag.plain { --c: var(--muted); }
+    @media (prefers-color-scheme: dark) { .tag.see { --c: #a7aaf0; } .tag.video { --c: #c3a5e0; } }
+    @media (max-width: 560px) { .anatomy div { grid-template-columns: none; gap: .4rem; } }
+
+    blockquote { margin: 1.4rem 0; padding: 0; font-size: 1.15rem; }
+    blockquote p { margin: 0 0 .85em; }
+    blockquote footer { font: 700 .85rem/1.4 var(--sans); color: var(--muted); }
+
+    .colophon {
+      margin: var(--step) 0 0;
+      padding: 1.1rem 0 3rem;
+      border-top: 1px solid var(--ink);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem;
+      font: 700 .85rem/1.5 var(--sans); color: var(--muted);
+    }
+    .colophon a { color: var(--muted); }
+    .colophon a:hover { color: var(--ink); }
+
     @media (max-width: 560px) {
-      .hero { border-left-width: 8px; }
+      body { font-size: 1.1rem; }
+      .page { padding: 0 1.15rem; }
+      .box > .box-body, .box > .box-head { padding-left: 1rem; padding-right: 1rem; }
+      .tables { gap: .5rem 1rem; flex-wrap: nowrap; }
+      .limit-table th, .limit-table td { padding-left: .35rem; padding-right: .35rem; }
+      .limit-table caption { font-size: .78rem; }
+      .cell input { width: 3.6rem; }
+      .running .site { display: none; }
     }
-    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="wrap">
-      <p class="kicker">// a free book · calculus 2 from zero</p>
-      <h1>You think you're F.*ked at calculus. <span>You're not.</span></h1>
-      <p class="lede">A start-from-zero guide to Calculus 2, with all the Calc 1 you need built in. Every chapter starts with why the idea exists and what it's for, before any formula shows up.</p>
-      <p class="byline">by Shriyash Ghimire</p>
+  <div class="page">
+    <header class="running">
+      <a class="book" href="/">Calculus 2 From Zero</a>
+      <a class="site" href="https://blog.shriyash.dev">blog.shriyash.dev</a>
+    </header>
+
+    <main>
+      <h1>Calculus 2 <span class="from">From Zero</span></h1>
+      <p class="subtitle">A free book for anyone Calc 2 didn’t click for. It starts from nothing and builds in the Calc 1 you need along the way.</p>
+      <p class="byline">Shriyash Ghimire <span>· 2026</span></p>
+
       <div class="actions">
-        <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">Read it online →</a>
-        <a class="btn btn-ghost" href="/calculus-2-from-zero.pdf" download>Download PDF</a>
+        <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/><path d="M10 5.1v11"/></svg>
+          Read the book
+        </a>
+        <a class="btn btn-plain" href="/calculus-2-from-zero.pdf" download>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0-4-4m4 4 4-4M4 16.5h12"/></svg>
+          Download the PDF
+        </a>
       </div>
-      <p class="meta">PDF · 0.8 MB · 19 chapters + a start-here page · CC BY 4.0</p>
-    </div>
-  </header>
+      <p class="facts"><span>209 pages</span><span>19 chapters</span><span>0.8 MB</span><span>CC BY 4.0</span></p>
 
-  <main>
-    <section>
-      <div class="wrap">
-        <p class="label">How to use it</p>
-        <h2>Read top to bottom. Get stuck on purpose.</h2>
-        <p>Start with <em>Start Here</em>. It explains how the colored boxes work and sets the mindset. Each chapter builds on the ones before it, and each one gives you:</p>
-        <ul>
-          <li>why the idea exists and what it's for, before any formula</li>
-          <li>worked examples, plus a box of the wrong ideas that wreck people</li>
-          <li>three practice problems with hints, and a five-problem workout</li>
-          <li>answers at the end, diagrams where they help, and a Professor Leonard lecture to pair with it</li>
-        </ul>
-        <div class="callout">Do the problems. Get stuck. Don't look up the answer the second it gets hard. Sit in the stuck, because that exact discomfort is the thing building the version of you that can learn anything.</div>
+      <section class="lead" aria-label="The idea behind the book">
+        <p>Most calculus goes symbols first, meaning later, if there’s time. This book does it the other way round. Before any formula, each chapter tells you <strong>why the idea exists</strong>, what question forced someone to invent it, and <strong>what it’s for</strong>.</p>
+        <p>It also makes you do the maths, so here’s the first thing Chapter 1 asks you to try.</p>
+      </section>
+
+      <section aria-labelledby="first-limit">
+        <h2 id="first-limit">Your first limit, found by you</h2>
+        <p>Here’s a function that looks harmless:</p>
+        <p class="display-math"><span class="m">f</span>(<span class="m">x</span>) = <span class="frac"><span><span class="m">x</span>² − 4</span><span><span class="m">x</span> − 2</span></span></p>
+        <p>Feed it 3 and you get 5. Feed it 0 and you get 2. Feed it 2 and you get <span class="frac"><span>0</span><span>0</span></span>, so the machine jams. There is no output at <span class="m">x</span> = 2. We can’t ask what <span class="m">f</span> does <em>at</em> 2, but we can ask what it does <em>near</em> 2.</p>
+
+        <div class="box try" id="try">
+          <div class="box-head">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13.5 3.5 3 3L7 16l-4 1 1-4z"/><path d="m11.5 5.5 3 3"/></svg>
+            Try it yourself (get stuck on purpose)
+          </div>
+          <div class="box-body">
+            <p>Grab a calculator and fill in the blanks. Work out at least two by hand before you peek.</p>
+            <div class="tables" id="limit-table">
+              <table class="limit-table">
+                <caption>From the left, <span class="m">x</span> → 2<sup>−</sup></caption>
+                <thead><tr><th scope="col"><span class="m">x</span></th><th scope="col"><span class="m">f</span>(<span class="m">x</span>)</th></tr></thead>
+                <tbody>
+                  <tr><td>1.9</td><td class="cell" data-answer="3.9"><input inputmode="decimal" autocomplete="off" aria-label="f(1.9)" placeholder="?"></td></tr>
+                  <tr><td>1.99</td><td class="cell" data-answer="3.99"><input inputmode="decimal" autocomplete="off" aria-label="f(1.99)" placeholder="?"></td></tr>
+                  <tr><td>1.999</td><td class="cell" data-answer="3.999"><input inputmode="decimal" autocomplete="off" aria-label="f(1.999)" placeholder="?"></td></tr>
+                </tbody>
+              </table>
+              <table class="limit-table">
+                <caption>From the right, <span class="m">x</span> → 2<sup>+</sup></caption>
+                <thead><tr><th scope="col"><span class="m">x</span></th><th scope="col"><span class="m">f</span>(<span class="m">x</span>)</th></tr></thead>
+                <tbody>
+                  <tr><td>2.1</td><td class="cell" data-answer="4.1"><input inputmode="decimal" autocomplete="off" aria-label="f(2.1)" placeholder="?"></td></tr>
+                  <tr><td>2.01</td><td class="cell" data-answer="4.01"><input inputmode="decimal" autocomplete="off" aria-label="f(2.01)" placeholder="?"></td></tr>
+                  <tr><td>2.001</td><td class="cell" data-answer="4.001"><input inputmode="decimal" autocomplete="off" aria-label="f(2.001)" placeholder="?"></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="try-controls">
+              <button type="button" id="check">Check my numbers</button>
+              <button type="button" class="secondary" id="reveal">Show me the answers</button>
+            </div>
+            <p class="feedback" id="feedback" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div id="payoff">
+          <p>From the left, the outputs go 3.9, 3.99, 3.999, … From the right they come down 4.1, 4.01, 4.001, … Both sides are being herded toward one number: 4.</p>
+          <figure>
+            <svg class="graph" id="graph" viewBox="0 0 360 230" role="img" aria-labelledby="graph-title">
+              <title id="graph-title">Graph of f: the straight line y = x + 2, with an open circle at (2, 4) where the function has no value.</title>
+              <line class="axis" x1="30" y1="200" x2="340" y2="200"/>
+              <path class="axis" d="M340 200 l-7 -3.5 v7 z" fill="var(--muted)" stroke="none"/>
+              <line class="axis" x1="60" y1="215" x2="60" y2="14"/>
+              <path class="axis" d="M60 14 l-3.5 7 h7 z" fill="var(--muted)" stroke="none"/>
+              <text x="348" y="205" font-style="italic" font-size="16">x</text>
+              <text x="55" y="9" font-style="italic" font-size="16">y</text>
+              <line class="guide" x1="60" y1="96" x2="190" y2="96"/>
+              <line class="guide" x1="190" y1="96" x2="190" y2="200"/>
+              <text x="42" y="101" font-size="14">4</text>
+              <text x="186" y="219" font-size="14">2</text>
+              <line x1="190" y1="196" x2="190" y2="204" stroke="var(--muted)"/>
+              <line x1="56" y1="96" x2="64" y2="96" stroke="var(--muted)"/>
+              <path class="curve" id="curve" d="M40 148 L330 32"/>
+              <circle class="walker" id="walk-l" r="4.2" cx="40" cy="148"/>
+              <circle class="walker" id="walk-r" r="4.2" cx="330" cy="32"/>
+              <circle class="hole" cx="190" cy="96" r="5.5"/>
+            </svg>
+            <figcaption>The graph of <span class="m">f</span>: a straight line with exactly one point punched out.</figcaption>
+          </figure>
+
+          <div class="box key">
+            <div class="box-head">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m10 2 2.35 5.1 5.4.55-4.05 3.7 1.15 5.4L10 14l-4.85 2.75 1.15-5.4L2.25 7.65l5.4-.55z"/></svg>
+              The whole idea in one line
+            </div>
+            <div class="box-body">
+              <p>A limit answers “where is this function <em>headed</em>?”, not “where does it <em>land</em>?” Here it’s headed to 4 and lands nowhere. You just computed a limit; everything else is naming:</p>
+              <p class="display-math">lim<sub style="font-size:.6em;font-style:italic">x→2</sub> <span class="m">f</span>(<span class="m">x</span>) = 4</p>
+            </div>
+          </div>
+          <p class="source">From Calc 1, Chapter 1: Limits &amp; Continuity, pages&nbsp;9–11</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="pages">
+        <h2 id="pages">What the pages look like</h2>
+        <p>These are pages 10, 12 and 13 as they appear in the PDF, with no edits. Click one to open the book at that page.</p>
+      </section>
+    </main>
+  </div>
+
+  <ul class="pages" aria-label="Sample pages from Chapter 1">
+    <li><a href="/calculus-2-from-zero.pdf#page=11" target="_blank" rel="noopener">
+      <img src="/pages/page-11.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 10: the table of values approaching 2, filled in, and a Key idea box introducing lim as x goes to 2 of f(x) equals 4.">
+      <span class="cap"><b>Page 10</b>The table, filled in, and the notation once you’ve earned it.</span></a></li>
+    <li><a href="/calculus-2-from-zero.pdf#page=13" target="_blank" rel="noopener">
+      <img src="/pages/page-13.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 12: one-sided limits, explained with a parking garage that charges 5 dollars up to two hours and 12 dollars after, with a step graph.">
+      <span class="cap"><b>Page 12</b>One-sided limits, through a parking garage’s prices.</span></a></li>
+    <li><a href="/calculus-2-from-zero.pdf#page=14" target="_blank" rel="noopener">
+      <img src="/pages/page-14.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 13: a Watch out box explaining that DNE is a finding, not an error, followed by a worked piecewise example and a table for 1 over x squared.">
+      <span class="cap"><b>Page 13</b>A “Watch out” box: DNE is a finding, not a mistake.</span></a></li>
+  </ul>
+
+  <div class="page">
+    <section aria-labelledby="anatomy">
+      <h2 id="anatomy">How every chapter works</h2>
+      <p>Read the book top to bottom, since each chapter leans on the ones before it. The coloured boxes are the same everywhere, so you’ll know them on sight.</p>
+      <dl class="anatomy">
+        <div><dt><span class="tag plain">Why it exists</span></dt><dd>The question that forced someone to invent the idea, and where you’d actually use it. This always comes before the formula.</dd></div>
+        <div><dt><span class="tag try" style="--c:var(--try)">Try it yourself</span></dt><dd>Stop, attempt it, and get stuck on purpose. It comes before the explanation, not after.</dd></div>
+        <div><dt><span class="tag see">See it</span></dt><dd>A diagram, walked through line by line instead of just dropped on the page.</dd></div>
+        <div><dt><span class="tag" style="--c:var(--key)">Key idea</span></dt><dd>The one thing from a section worth remembering.</dd></div>
+        <div><dt><span class="tag" style="--c:var(--warn)">Watch out</span></dt><dd>The specific wrong ideas that trip people up at that spot.</dd></div>
+        <div><dt><span class="tag video">Want it on video?</span></dt><dd>The matching Professor Leonard lecture, in case a second voice is what makes it click.</dd></div>
+      </dl>
+      <p style="margin-top:1.2rem">Each chapter ends with three practice problems with hints, a five-problem workout, and the answers.</p>
+    </section>
+
+    <section aria-labelledby="contents">
+      <h2 id="contents">What’s inside</h2>
+      <p>A start-here page and 19 chapters. Page numbers are the book’s own, and each title opens the PDF at that chapter.</p>
+      <div class="toc">
+        <h3><span>Getting Started</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=3"><span class="title">Start Here: how to use this book</span><span class="leader"></span><span class="pg">2</span></a></li>
+        </ol>
+
+        <h3><span>Calculus 1: The Foundation</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=7"><span class="title"><span class="ch">1</span>Limits &amp; Continuity</span><span class="leader"></span><span class="pg">6</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=26"><span class="title"><span class="ch">2</span>Derivatives</span><span class="leader"></span><span class="pg">25</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=37"><span class="title"><span class="ch">3</span>Applications of Derivatives</span><span class="leader"></span><span class="pg">36</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=48"><span class="title"><span class="ch">4</span>Integrals &amp; the FTC</span><span class="leader"></span><span class="pg">47</span></a></li>
+        </ol>
+
+        <h3><span>Calculus 2: Techniques of Integration</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=59"><span class="title"><span class="ch">1</span>Integration by Parts</span><span class="leader"></span><span class="pg">58</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=68"><span class="title"><span class="ch">2</span>Trigonometric Integrals</span><span class="leader"></span><span class="pg">67</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=77"><span class="title"><span class="ch">3</span>Trigonometric Substitution</span><span class="leader"></span><span class="pg">76</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=88"><span class="title"><span class="ch">4</span>Partial Fractions</span><span class="leader"></span><span class="pg">87</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=98"><span class="title"><span class="ch">5</span>Improper Integrals</span><span class="leader"></span><span class="pg">97</span></a></li>
+        </ol>
+
+        <h3><span>Calculus 2: Applications of Integration</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=107"><span class="title"><span class="ch">6</span>Area Between Curves</span><span class="leader"></span><span class="pg">106</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=116"><span class="title"><span class="ch">7</span>Volumes of Revolution</span><span class="leader"></span><span class="pg">115</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=126"><span class="title"><span class="ch">8</span>Arc Length &amp; Surface Area</span><span class="leader"></span><span class="pg">125</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=135"><span class="title"><span class="ch">9</span>Work</span><span class="leader"></span><span class="pg">134</span></a></li>
+        </ol>
+
+        <h3><span>Calculus 2: Sequences &amp; Series</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=145"><span class="title"><span class="ch">10</span>Sequences</span><span class="leader"></span><span class="pg">144</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=154"><span class="title"><span class="ch">11</span>Series &amp; the Divergence Test</span><span class="leader"></span><span class="pg">153</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=164"><span class="title"><span class="ch">12</span>Integral Test, p-Series &amp; Comparison</span><span class="leader"></span><span class="pg">163</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=175"><span class="title"><span class="ch">13</span>Alternating, Ratio &amp; Root Tests</span><span class="leader"></span><span class="pg">174</span></a></li>
+        </ol>
+
+        <h3><span>Calculus 2: Power Series &amp; Taylor</span></h3>
+        <ol>
+          <li><a href="/calculus-2-from-zero.pdf#page=185"><span class="title"><span class="ch">14</span>Power Series</span><span class="leader"></span><span class="pg">184</span></a></li>
+          <li><a href="/calculus-2-from-zero.pdf#page=195"><span class="title"><span class="ch">15</span>Taylor &amp; Maclaurin Series</span><span class="leader"></span><span class="pg">194</span></a></li>
+        </ol>
+      </div>
+
+      <div class="box warn">
+        <div class="box-head">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2.8 18 16.6H2z"/><path d="M10 8v3.8"/><circle cx="10" cy="14.2" r=".4" fill="currentColor"/></svg>
+          Skipping ahead to series?
+        </div>
+        <div class="box-body">
+          <p>You’ll need limits from Calc 1, plus Partial Fractions and Improper Integrals. Telescoping series are built on partial fractions, and the <span class="m">p</span>-series rule comes straight from improper integrals.</p>
+        </div>
       </div>
     </section>
 
-    <section>
-      <div class="wrap">
-        <p class="label">What's inside</p>
-        <h2>19 chapters, from limits to Taylor series</h2>
+    <section aria-labelledby="why">
+      <h2 id="why">Why this book exists</h2>
+      <blockquote>
+        <p>You will probably forget most of the actual content in two years. The chain rule, the ratio test, the exact formula for arc length. Gone. And that is completely fine, because the content was never the point.</p>
+        <p>Here is the point. The thing you truly keep from learning something hard is the proof you gave yourself that you can do it.</p>
+        <footer>From “Start Here”, page 2</footer>
+      </blockquote>
+      <p><strong>How it was made.</strong> The notes, the structure, which explanations made it in, and the checking of every answer are mine, from learning this material myself. I used AI tools to help write and typeset it, because English isn’t my first language and I wanted the explanations to read naturally. If you find something wrong or badly explained, tell me the page and I’ll fix it.</p>
+    </section>
 
-        <h3>Getting Started <small>read first</small></h3>
-        <ol class="chapters">
-          <li><span class="num">00</span><div><strong>Start Here: how to use this book</strong><span class="what">How the boxes work, and why getting stuck is the point. No math needed.</span></div></li>
-        </ol>
-
-        <h3>Calculus 1: The Foundation</h3>
-        <ol class="chapters">
-          <li><span class="num">C1.1</span><div><strong>Limits &amp; continuity</strong><span class="what">One-sided limits, continuity, L'Hôpital</span></div></li>
-          <li><span class="num">C1.2</span><div><strong>Derivatives</strong><span class="what">The derivative as a limit, the rules, the chain rule</span></div></li>
-          <li><span class="num">C1.3</span><div><strong>Applications of derivatives</strong><span class="what">Optimization, related rates, curve shape</span></div></li>
-          <li><span class="num">C1.4</span><div><strong>Integrals &amp; the FTC</strong><span class="what">The integral, the Fundamental Theorem, substitution</span></div></li>
-        </ol>
-
-        <h3>Calculus 2: Techniques of Integration</h3>
-        <ol class="chapters">
-          <li><span class="num">C2.1</span><div><strong>Integration by parts</strong><span class="what">Reverse product rule, LIATE, tabular, boomerang</span></div></li>
-          <li><span class="num">C2.2</span><div><strong>Trigonometric integrals</strong><span class="what">Powers of sin, cos, tan, sec</span></div></li>
-          <li><span class="num">C2.3</span><div><strong>Trigonometric substitution</strong><span class="what">The three triangle substitutions</span></div></li>
-          <li><span class="num">C2.4</span><div><strong>Partial fractions</strong><span class="what">Splitting rational functions to integrate</span></div></li>
-          <li><span class="num">C2.5</span><div><strong>Improper integrals</strong><span class="what">Infinite limits, the p-test for integrals</span></div></li>
-        </ol>
-
-        <h3>Calculus 2: Applications of Integration</h3>
-        <ol class="chapters">
-          <li><span class="num">C2.6</span><div><strong>Area between curves</strong><span class="what">dx vs dy strips</span></div></li>
-          <li><span class="num">C2.7</span><div><strong>Volumes of revolution</strong><span class="what">Disk, washer, and shell methods</span></div></li>
-          <li><span class="num">C2.8</span><div><strong>Arc length &amp; surface area</strong><span class="what">Length of a curve, surface of revolution</span></div></li>
-          <li><span class="num">C2.9</span><div><strong>Work</strong><span class="what">Springs, lifting ropes and cables, pumping tanks</span></div></li>
-        </ol>
-
-        <h3>Calculus 2: Sequences &amp; Series</h3>
-        <ol class="chapters">
-          <li><span class="num">C2.10</span><div><strong>Sequences</strong><span class="what">Infinite lists, limits of sequences, rⁿ, squeeze</span></div></li>
-          <li><span class="num">C2.11</span><div><strong>Series &amp; the divergence test</strong><span class="what">Partial sums, geometric, telescoping, harmonic</span></div></li>
-          <li><span class="num">C2.12</span><div><strong>Integral test, p-series &amp; comparison</strong><span class="what">The integral test, the p-series rule, direct and limit comparison</span></div></li>
-          <li><span class="num">C2.13</span><div><strong>Alternating, ratio &amp; root tests</strong><span class="what">Absolute vs conditional convergence, picking a test</span></div></li>
-        </ol>
-
-        <h3>Calculus 2: Power Series &amp; Taylor</h3>
-        <ol class="chapters">
-          <li><span class="num">C2.14</span><div><strong>Power series</strong><span class="what">Infinite polynomials, radius and interval of convergence</span></div></li>
-          <li><span class="num">C2.15</span><div><strong>Taylor &amp; Maclaurin series</strong><span class="what">The formula, famous expansions, approximation</span></div></li>
-        </ol>
-
-        <div class="callout"><strong>Skipping ahead to series?</strong> You need limits from Calc 1, plus Partial Fractions and Improper Integrals: telescoping series are built on partial fractions, and the p-series rule comes straight from improper integrals.</div>
+    <section aria-labelledby="yours">
+      <h2 id="yours">Free to read, share and remix</h2>
+      <p>The book is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>. Print it for a class, mirror it, translate it, or pull chapters out. Just keep my name on it and note anything you changed.</p>
+      <p>Found a typo, a wrong answer, or a spot where you got stuck? Those are the most useful things you can send me. <a href="https://blog.shriyash.dev/feedback?from=calculus-book">Send feedback</a>.</p>
+      <div class="actions" style="margin-top:1.6rem">
+        <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/><path d="M10 5.1v11"/></svg>
+          Start at page 1
+        </a>
+        <a class="btn btn-plain" href="/calculus-2-from-zero.pdf" download>Download the PDF</a>
       </div>
     </section>
 
-    <section>
-      <div class="wrap">
-        <p class="label">It's yours</p>
-        <h2>Free to read, share, and remix</h2>
-        <p>The book is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>. Print it for a class, mirror it, translate it, or pull chapters out. Just keep my name on it and note anything you changed.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <p class="label">Feedback</p>
-        <h2>Found a typo? Got stuck somewhere?</h2>
-        <p>Tell me. Confusing explanations, wrong answers, and "this finally clicked" all help make the next version better.</p>
-        <p><a class="btn btn-primary" href="https://blog.shriyash.dev/feedback?from=calculus-book">Send feedback →</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
+    <footer class="colophon">
       <span>© Shriyash Ghimire · CC BY 4.0</span>
-      <a href="https://blog.shriyash.dev">&lt;Shriyash Uncompiled /&gt;</a>
-    </div>
-  </footer>
+      <a href="https://blog.shriyash.dev">Shriyash Uncompiled</a>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var cells = Array.prototype.slice.call(document.querySelectorAll('#limit-table .cell'));
+      var feedback = document.getElementById('feedback');
+      var graph = document.getElementById('graph');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function grade(cell) {
+        var input = cell.querySelector('input');
+        var raw = input.value.trim().replace(',', '.');
+        if (!raw) { cell.removeAttribute('data-state'); return null; }
+        var ok = Math.abs(parseFloat(raw) - parseFloat(cell.dataset.answer)) < 1e-9;
+        cell.dataset.state = ok ? 'right' : 'wrong';
+        return ok;
+      }
+
+      // Walk a dot along the line from each side toward the hole, stopping just short.
+      var walked = false;
+      function walk() {
+        if (walked || reduce) return;
+        walked = true;
+        var l = document.getElementById('walk-l'), r = document.getElementById('walk-r');
+        graph.classList.add('walking');
+        var start = null, dur = 2600;
+        var L0 = [40, 148], R0 = [330, 32], H = [190, 96];
+        function step(t) {
+          if (!start) start = t;
+          var p = Math.min(1, (t - start) / dur);
+          var e = 1 - Math.pow(1 - p, 4);      // ease-out: fast at first, creeping at the end
+          var k = 0.965 * e;                    // never actually lands on the hole
+          l.setAttribute('cx', L0[0] + (H[0] - L0[0]) * k); l.setAttribute('cy', L0[1] + (H[1] - L0[1]) * k);
+          r.setAttribute('cx', R0[0] + (H[0] - R0[0]) * k); r.setAttribute('cy', R0[1] + (H[1] - R0[1]) * k);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      document.getElementById('check').addEventListener('click', function () {
+        var right = 0, wrong = 0, blank = 0;
+        cells.forEach(function (c) { var g = grade(c); if (g === true) right++; else if (g === false) wrong++; else blank++; });
+        feedback.classList.remove('ok');
+        if (right === cells.length) {
+          feedback.textContent = 'All six right. Now look at where both rows are heading.';
+          feedback.classList.add('ok');
+          walk();
+        } else if (right + wrong === 0) {
+          feedback.textContent = 'Fill in at least two first. Plug each x into (x² − 4) ÷ (x − 2).';
+        } else if (wrong) {
+          feedback.textContent = wrong + (wrong === 1 ? ' doesn’t' : ' don’t') + ' match yet. Try factoring the top: x² − 4 = (x − 2)(x + 2).';
+        } else {
+          feedback.textContent = right + ' right so far, ' + blank + ' to go.';
+          feedback.classList.add('ok');
+        }
+      });
+
+      document.getElementById('reveal').addEventListener('click', function () {
+        cells.forEach(function (c) { c.querySelector('input').value = c.dataset.answer; grade(c); });
+        feedback.classList.remove('ok');
+        feedback.textContent = 'Here’s what the machine says. Read on below.';
+        walk();
+      });
+
+      cells.forEach(function (c) {
+        c.querySelector('input').addEventListener('input', function () { c.removeAttribute('data-state'); });
+      });
+    })();
+  </script>
 </body>
 </html>
