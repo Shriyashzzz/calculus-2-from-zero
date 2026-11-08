@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calculus 2 From Zero · Shriyash Ghimire</title>
-  <meta name="description" content="A free, start-from-zero guide to Calculus 2, with all the Calc 1 you need. Worked examples, practice with hints, diagrams. CC BY 4.0.">
-  <meta property="og:title" content="You think you're fucked at calculus. You're not.">
+  <meta name="description" content="A free, start-from-zero guide to Calculus 2, with all the Calc 1 you need. Every chapter explains why the idea exists before any formula, with worked examples, practice with hints, and answers. CC BY 4.0.">
+  <meta property="og:title" content="You think you're F.*ked at calculus. You're not.">
   <meta property="og:description" content="Calculus 2 From Zero: a free, start-from-zero guide to Calc 2, with all the Calc 1 you need.">
   <meta property="og:type" content="book">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%233c4696'/><text x='16' y='25' font-size='24' text-anchor='middle' fill='%23f2b705' font-family='serif'>∫</text></svg>">
@@ -70,7 +70,6 @@
     .kicker {
       font-family: var(--mono);
       font-size: .8rem;
-      letter-spacing: .08em;
       color: var(--accent);
       margin: 0 0 1.25rem;
     }
@@ -125,14 +124,10 @@
     ol.chapters .num { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding-top: .2rem; }
     ol.chapters strong { display: block; font-weight: 600; }
     ol.chapters span.what { color: var(--muted); font-size: 1rem; }
-    .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
-    .track { border-left: 4px solid var(--theme); padding: .25rem 0 .25rem 1rem; }
-    .track p { margin: .25rem 0 0; color: var(--muted); font-size: 1rem; }
     .callout { border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1rem; margin: 1.25rem 0; }
     footer { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding: 2rem 0 3rem; }
     footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
     @media (max-width: 560px) {
-      .tracks { grid-template-columns: 1fr; }
       .hero { border-left-width: 8px; }
     }
     @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
@@ -142,14 +137,14 @@
   <header class="hero">
     <div class="wrap">
       <p class="kicker">// a free book · calculus 2 from zero</p>
-      <h1>You think you're fucked at calculus. <span>You're not.</span></h1>
-      <p class="lede">A start-from-zero guide to Calculus 2, with all the Calc 1 you need built in. Every chapter has a pep talk, worked examples, practice problems with hints, and diagrams.</p>
+      <h1>You think you're F.*ked at calculus. <span>You're not.</span></h1>
+      <p class="lede">A start-from-zero guide to Calculus 2, with all the Calc 1 you need built in. Every chapter starts with why the idea exists and what it's for, before any formula shows up.</p>
       <p class="byline">by Shriyash Ghimire</p>
       <div class="actions">
         <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">Read it online →</a>
         <a class="btn btn-ghost" href="/calculus-2-from-zero.pdf" download>Download PDF</a>
       </div>
-      <p class="meta">PDF · 0.8 MB · 20 chapters · CC BY 4.0</p>
+      <p class="meta">PDF · 0.8 MB · 19 chapters + a start-here page · CC BY 4.0</p>
     </div>
   </header>
 
@@ -158,22 +153,28 @@
       <div class="wrap">
         <p class="label">How to use it</p>
         <h2>Read top to bottom. Get stuck on purpose.</h2>
-        <p>Start with <em>Start Here</em>. It explains how the colored boxes work and sets the mindset. Each chapter builds on the ones before it, and each one has an easy practice problem and a harder one with hints.</p>
-        <div class="callout">One rule before you start: when a problem gets hard, sit in the stuck for a minute before you peek at the answer. That discomfort is the part doing the work.</div>
+        <p>Start with <em>Start Here</em>. It explains how the colored boxes work and sets the mindset. Each chapter builds on the ones before it, and each one gives you:</p>
+        <ul>
+          <li>why the idea exists and what it's for, before any formula</li>
+          <li>worked examples, plus a box of the wrong ideas that wreck people</li>
+          <li>three practice problems with hints, and a five-problem workout</li>
+          <li>answers at the end, diagrams where they help, and a Professor Leonard lecture to pair with it</li>
+        </ul>
+        <div class="callout">Do the problems. Get stuck. Don't look up the answer the second it gets hard. Sit in the stuck, because that exact discomfort is the thing building the version of you that can learn anything.</div>
       </div>
     </section>
 
     <section>
       <div class="wrap">
         <p class="label">What's inside</p>
-        <h2>20 chapters, from limits to Taylor series</h2>
+        <h2>19 chapters, from limits to Taylor series</h2>
 
-        <h3>00 · Start Here <small>read first</small></h3>
+        <h3>Getting Started <small>read first</small></h3>
         <ol class="chapters">
-          <li><span class="num">00</span><div><strong>The field guide</strong><span class="what">How the boxes work, and why getting stuck is the point. No math needed.</span></div></li>
+          <li><span class="num">00</span><div><strong>Start Here: how to use this book</strong><span class="what">How the boxes work, and why getting stuck is the point. No math needed.</span></div></li>
         </ol>
 
-        <h3>Calculus 1, the foundation</h3>
+        <h3>Calculus 1: The Foundation</h3>
         <ol class="chapters">
           <li><span class="num">C1.1</span><div><strong>Limits &amp; continuity</strong><span class="what">One-sided limits, continuity, L'Hôpital</span></div></li>
           <li><span class="num">C1.2</span><div><strong>Derivatives</strong><span class="what">The derivative as a limit, the rules, the chain rule</span></div></li>
@@ -181,7 +182,7 @@
           <li><span class="num">C1.4</span><div><strong>Integrals &amp; the FTC</strong><span class="what">The integral, the Fundamental Theorem, substitution</span></div></li>
         </ol>
 
-        <h3>Unit A · Techniques of integration</h3>
+        <h3>Calculus 2: Techniques of Integration</h3>
         <ol class="chapters">
           <li><span class="num">C2.1</span><div><strong>Integration by parts</strong><span class="what">Reverse product rule, LIATE, tabular, boomerang</span></div></li>
           <li><span class="num">C2.2</span><div><strong>Trigonometric integrals</strong><span class="what">Powers of sin, cos, tan, sec</span></div></li>
@@ -190,7 +191,7 @@
           <li><span class="num">C2.5</span><div><strong>Improper integrals</strong><span class="what">Infinite limits, the p-test for integrals</span></div></li>
         </ol>
 
-        <h3>Unit B · Applications of integration</h3>
+        <h3>Calculus 2: Applications of Integration</h3>
         <ol class="chapters">
           <li><span class="num">C2.6</span><div><strong>Area between curves</strong><span class="what">dx vs dy strips</span></div></li>
           <li><span class="num">C2.7</span><div><strong>Volumes of revolution</strong><span class="what">Disk, washer, and shell methods</span></div></li>
@@ -198,24 +199,21 @@
           <li><span class="num">C2.9</span><div><strong>Work</strong><span class="what">Springs, lifting ropes and cables, pumping tanks</span></div></li>
         </ol>
 
-        <h3>Unit C · Sequences &amp; series</h3>
+        <h3>Calculus 2: Sequences &amp; Series</h3>
         <ol class="chapters">
           <li><span class="num">C2.10</span><div><strong>Sequences</strong><span class="what">Infinite lists, limits of sequences, rⁿ, squeeze</span></div></li>
           <li><span class="num">C2.11</span><div><strong>Series &amp; the divergence test</strong><span class="what">Partial sums, geometric, telescoping, harmonic</span></div></li>
-          <li><span class="num">C2.12</span><div><strong>Integral test &amp; comparison</strong><span class="what">p-series, direct and limit comparison</span></div></li>
+          <li><span class="num">C2.12</span><div><strong>Integral test, p-series &amp; comparison</strong><span class="what">The integral test, the p-series rule, direct and limit comparison</span></div></li>
           <li><span class="num">C2.13</span><div><strong>Alternating, ratio &amp; root tests</strong><span class="what">Absolute vs conditional convergence, picking a test</span></div></li>
         </ol>
 
-        <h3>Unit D · Power series &amp; Taylor</h3>
+        <h3>Calculus 2: Power Series &amp; Taylor</h3>
         <ol class="chapters">
           <li><span class="num">C2.14</span><div><strong>Power series</strong><span class="what">Infinite polynomials, radius and interval of convergence</span></div></li>
           <li><span class="num">C2.15</span><div><strong>Taylor &amp; Maclaurin series</strong><span class="what">The formula, famous expansions, approximation</span></div></li>
         </ol>
 
-        <div class="tracks">
-          <div class="track"><strong>Integration track</strong><p>Unit A → Unit B. Techniques first, then what they're for.</p></div>
-          <div class="track"><strong>Series track</strong><p>Unit C → Unit D. Can run in parallel once Calc 1 clicks.</p></div>
-        </div>
+        <div class="callout"><strong>Skipping ahead to series?</strong> You need limits from Calc 1, plus Partial Fractions and Improper Integrals: telescoping series are built on partial fractions, and the p-series rule comes straight from improper integrals.</div>
       </div>
     </section>
 
