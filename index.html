@@ -25,8 +25,6 @@
       --rule: #e1e0e1;
       --teal: #009688;
       --teal-ink: #00796b;
-      --key: #154c7c;     --key-bg: #eff4f8;
-      --try: #166c3a;     --try-bg: #edf5f0;
       --warn: #aa480d;    --warn-bg: #fbf1ec;
       --serif: "Bonum", "TeX Gyre Bonum", "Bookman Old Style", "URW Bookman", Georgia, serif;
       --sans: "Poppins", "Avenir Next", "Segoe UI", system-ui, sans-serif;
@@ -42,9 +40,7 @@
         --rule: #3a363c;
         --teal: #3cc2b2;
         --teal-ink: #5fd3c5;
-        --key: #8db8de;     --key-bg: #1f2833;
-        --try: #79c79a;     --try-bg: #1d2a22;
-        --warn: #e8956a;    --warn-bg: #2f221c;
+            --warn: #e8956a;    --warn-bg: #2f221c;
       }
     }
 
@@ -63,10 +59,6 @@
     a:hover { text-decoration-thickness: 2px; }
     :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
     em, i { font-style: italic; }
-    .m { font-style: italic; white-space: nowrap; }    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .82em; line-height: 1.15; margin: 0 .12em; }
-    .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 .2em .05em; }
-    .frac > span:last-child { padding: .05em .2em 0; }
-
     .page { max-width: var(--measure); margin: 0 auto; padding: 0 1.4rem; }
 
     .running {
@@ -82,14 +74,13 @@
 
     h1, h2, h3 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
     h1 {
-      font-size: clamp(2.6rem, 8.4vw, 4.25rem);
+      font-size: clamp(2.4rem, 7.5vw, 3.6rem);
       line-height: 1.02;
       letter-spacing: -0.03em;
       margin: clamp(2.5rem, 7vw, 4rem) 0 .9rem;
       color: var(--ink);
     }
     h1 .from { color: var(--teal); display: block; }
-    .subtitle { font-style: italic; font-size: 1.3rem; line-height: 1.45; color: var(--ink); margin: 0 0 1.4rem; max-width: 34rem; }
     .byline { font: 700 .95rem/1.4 var(--sans); margin: 0 0 2rem; }
     .byline span { color: var(--muted); font-weight: 700; }
 
@@ -111,10 +102,6 @@
     .facts { font: 400 .875rem/1.5 var(--sans); font-weight: 700; color: var(--muted); margin: 0; }
     .facts span + span::before { content: "·"; margin: 0 .5em; }
 
-    .lead { margin: clamp(2.5rem, 6vw, 3.5rem) 0 0; font-size: 1.25rem; }
-    .lead p { margin: 0 0 1em; }
-    .lead strong { font-weight: 700; }
-
     h2 {
       font-size: clamp(1.55rem, 4vw, 1.9rem);
       line-height: 1.2;
@@ -134,85 +121,7 @@
     }
     .box > .box-head svg { width: 1.05em; height: 1.05em; flex: none; }
     .box > .box-body { padding: 1.15rem 1.35rem .3rem; }
-    .key { --c: var(--key); --bg: var(--key-bg); }
-    .try { --c: var(--try); --bg: var(--try-bg); }
     .warn { --c: var(--warn); --bg: var(--warn-bg); }
-
-    .display-math { text-align: center; margin: .3rem 0 1.1rem; font-size: 1.2rem; }
-
-    .tables { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem clamp(1.5rem, 6vw, 4rem); margin: .4rem 0 1.2rem; }
-    .limit-table { border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
-    .limit-table caption { font: 700 .85rem/1.3 var(--sans); color: var(--try); padding-bottom: .45rem; white-space: nowrap; }
-    .limit-table caption .m { font-family: var(--serif); font-weight: 400; }
-    .limit-table th { font-weight: 400; padding: .25rem .8rem; border-bottom: 1px solid var(--ink); }
-    .limit-table td { padding: .3rem .8rem; text-align: center; }
-    .limit-table th:first-child, .limit-table td:first-child { border-right: 1px solid var(--ink); text-align: right; }
-    .cell input {
-      width: 5.2rem;
-      font: inherit; font-variant-numeric: tabular-nums;
-      text-align: center;
-      color: var(--ink);
-      background: var(--paper);
-      border: 1px solid color-mix(in srgb, var(--try) 45%, var(--rule));
-      border-radius: 6px;
-      padding: .2rem .2rem;
-      transition: border-color .25s, background-color .25s;
-    }
-    .cell input::placeholder { color: var(--muted); }
-    .cell input:focus-visible { outline: 2px solid var(--try); outline-offset: 1px; }
-    .cell[data-state="right"] input { border-color: var(--try); background: color-mix(in srgb, var(--try) 12%, var(--paper)); }
-    .cell[data-state="wrong"] input { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 10%, var(--paper)); }
-    .try-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin: 0 0 1rem; }
-    .try-controls button {
-      font: 700 .9rem/1 var(--sans);
-      padding: .7rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 1.5px solid var(--try);
-      background: var(--try); color: var(--paper);
-      transition: background-color .2s, color .2s;
-    }
-    .try-controls button.secondary { background: transparent; color: var(--try); }
-    .try-controls button:hover { background: color-mix(in srgb, var(--try) 85%, #000); color: var(--paper); }
-    .try-controls button:disabled { opacity: .5; cursor: default; }
-    .feedback { font-size: 1rem; color: var(--muted); margin: 0; min-height: 1.6em; }
-    .feedback.ok { color: var(--try); }
-
-    figure { margin: 2rem 0; }
-    figcaption { font-style: italic; font-size: .95rem; color: var(--ink); text-align: center; margin-top: .6rem; }
-    .graph { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0 auto; overflow: visible; }
-    .graph text { font-family: var(--serif); fill: var(--ink); }
-    .graph .axis { stroke: var(--muted); stroke-width: 1; }
-    .graph .curve { stroke: var(--teal); stroke-width: 2.4; fill: none; stroke-linecap: round; }
-    .graph .guide { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; }
-    .graph .hole { fill: var(--paper); stroke: var(--teal); stroke-width: 2.2; }
-    .graph .walker { fill: var(--try); opacity: 0; }
-    .graph.walking .walker { opacity: 1; }
-    .source { font: 700 .8rem/1.4 var(--sans); color: var(--muted); text-align: right; margin: -.5rem 0 0; }
-
-    .pages {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(.9rem, 2.4vw, 1.6rem);
-      margin: 2rem calc(50% - min(50vw, 33rem) + 1.4rem) 0;
-      padding: 0;
-      list-style: none;
-    }
-    .pages a { display: block; text-decoration: none; color: var(--ink); }
-    .pages img {
-      display: block; width: 100%; height: auto; aspect-ratio: 880 / 1138;
-      background: #fff;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 10px 28px -12px rgb(0 0 0 / .28);
-      transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s cubic-bezier(.16,1,.3,1);
-    }
-    .pages a:hover img { transform: translateY(-4px); box-shadow: 0 2px 4px rgb(0 0 0 / .08), 0 22px 40px -16px rgb(0 0 0 / .32); }
-    .pages .cap { display: block; font-size: .95rem; line-height: 1.4; margin-top: .8rem; }
-    .pages .cap b { font: 700 .8rem/1.4 var(--sans); color: var(--muted); display: block; }
-    @media (max-width: 720px) {
-      .pages { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 2rem -1.4rem 0; padding: 0 1.4rem 1rem; }
-      .pages li { scroll-snap-align: center; }
-    }
 
     .toc { margin: 1rem 0 0; }
     .toc h3 { font-size: 1rem; margin: 2rem 0 .3rem; display: flex; justify-content: space-between; color: var(--ink); }
@@ -227,28 +136,11 @@
       color: var(--ink);
       text-decoration: none;
     }
-    .toc li a::after { content: none; }
     .toc .leader { border-bottom: 1.5px dotted color-mix(in srgb, var(--muted) 70%, transparent); transform: translateY(-.3em); min-width: 1rem; }
     .toc .pg { font-variant-numeric: tabular-nums lining-nums; color: var(--muted); }
     .toc .ch { font: 700 .78rem/1 var(--sans); color: var(--muted); margin-right: .45rem; }
-    .toc .what { display: block; font-size: .95rem; color: var(--muted); font-style: italic; }
     .toc li a:hover .title { color: var(--teal-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
     .toc li a:hover .pg { color: var(--teal-ink); }
-
-    .anatomy { margin: 1rem 0 0; padding: 0; }
-    .anatomy div { display: grid; grid-template-columns: 11.5rem 1fr; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--rule); }
-    .anatomy div:last-child { border-bottom: 1px solid var(--rule); }
-    .anatomy dt { margin: 0; }
-    .anatomy dd { margin: 0; }
-    .tag { display: inline-block; font: 700 .85rem/1 var(--sans); color: var(--paper); background: var(--c); border-radius: 6px; padding: .45rem .65rem; }
-    .tag.see { --c: #4b4f9e; }
-    .tag.video { --c: #6b4a8a; }
-    @media (prefers-color-scheme: dark) { .tag.see { --c: #a7aaf0; } .tag.video { --c: #c3a5e0; } }
-    @media (max-width: 560px) { .anatomy div { grid-template-columns: none; gap: .4rem; } }
-
-    blockquote { margin: 1.4rem 0; padding: 0; font-size: 1.15rem; }
-    blockquote p { margin: 0 0 .85em; }
-    blockquote footer { font: 700 .85rem/1.4 var(--sans); color: var(--muted); }
 
     .colophon {
       margin: var(--step) 0 0;
@@ -264,10 +156,6 @@
       body { font-size: 1.1rem; }
       .page { padding: 0 1.15rem; }
       .box > .box-body, .box > .box-head { padding-left: 1rem; padding-right: 1rem; }
-      .tables { gap: .5rem 1rem; flex-wrap: nowrap; }
-      .limit-table th, .limit-table td { padding-left: .35rem; padding-right: .35rem; }
-      .limit-table caption { font-size: .78rem; }
-      .cell input { width: 3.6rem; }
       .running .site { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -285,140 +173,21 @@
 
     <main>
       <h1>Calculus 2 <span class="from">From Zero</span></h1>
-      <p class="subtitle">A free book for anyone Calc 2 didn’t click for. It starts from nothing and builds in the Calc 1 you need along the way.</p>
       <p class="byline">Shriyash Ghimire <span>· 2026</span></p>
 
       <div class="actions">
         <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/><path d="M10 5.1v11"/></svg>
-          Read the book
+          Start reading
         </a>
         <a class="btn btn-plain" href="/calculus-2-from-zero.pdf" download>
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10m0 0-4-4m4 4 4-4M4 16.5h12"/></svg>
-          Download the PDF
+          Download PDF
         </a>
       </div>
       <p class="facts"><span>209 pages</span><span>19 chapters</span><span>0.8 MB</span><span>CC BY 4.0</span></p>
 
-      <section class="lead" aria-label="The idea behind the book">
-        <p>Most calculus goes symbols first, meaning later, if there’s time. This book does it the other way around. Before any formula, each chapter tells you <strong>why the idea exists</strong>, what question forced someone to invent it, and <strong>what it’s for</strong>.</p>
-        <p>It also makes you do the math. Here’s the first thing Chapter 1 asks you to try.</p>
-      </section>
-
-      <section aria-labelledby="first-limit">
-        <h2 id="first-limit">Your first limit, found by you</h2>
-        <p>Here’s a function that looks harmless:</p>
-        <p class="display-math"><span class="m">f</span>(<span class="m">x</span>) = <span class="frac"><span><span class="m">x</span>² − 4</span><span><span class="m">x</span> − 2</span></span></p>
-        <p>Feed it 3 and you get 5. Feed it 0 and you get 2. Feed it 2 and you get <span class="frac"><span>0</span><span>0</span></span>, so the machine jams. There is no output at <span class="m">x</span> = 2. We can’t ask what <span class="m">f</span> does <em>at</em> 2, but we can ask what it does <em>near</em> 2.</p>
-
-        <div class="box try" id="try">
-          <div class="box-head">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13.5 3.5 3 3L7 16l-4 1 1-4z"/><path d="m11.5 5.5 3 3"/></svg>
-            Try it yourself (get stuck on purpose)
-          </div>
-          <div class="box-body">
-            <p>Grab a calculator and fill in the blanks. Work out at least two by hand before you peek.</p>
-            <div class="tables" id="limit-table">
-              <table class="limit-table">
-                <caption>From the left, <span class="m">x</span> → 2<sup>−</sup></caption>
-                <thead><tr><th scope="col"><span class="m">x</span></th><th scope="col"><span class="m">f</span>(<span class="m">x</span>)</th></tr></thead>
-                <tbody>
-                  <tr><td>1.9</td><td class="cell" data-answer="3.9"><input inputmode="decimal" autocomplete="off" aria-label="f(1.9)" placeholder="?"></td></tr>
-                  <tr><td>1.99</td><td class="cell" data-answer="3.99"><input inputmode="decimal" autocomplete="off" aria-label="f(1.99)" placeholder="?"></td></tr>
-                  <tr><td>1.999</td><td class="cell" data-answer="3.999"><input inputmode="decimal" autocomplete="off" aria-label="f(1.999)" placeholder="?"></td></tr>
-                </tbody>
-              </table>
-              <table class="limit-table">
-                <caption>From the right, <span class="m">x</span> → 2<sup>+</sup></caption>
-                <thead><tr><th scope="col"><span class="m">x</span></th><th scope="col"><span class="m">f</span>(<span class="m">x</span>)</th></tr></thead>
-                <tbody>
-                  <tr><td>2.1</td><td class="cell" data-answer="4.1"><input inputmode="decimal" autocomplete="off" aria-label="f(2.1)" placeholder="?"></td></tr>
-                  <tr><td>2.01</td><td class="cell" data-answer="4.01"><input inputmode="decimal" autocomplete="off" aria-label="f(2.01)" placeholder="?"></td></tr>
-                  <tr><td>2.001</td><td class="cell" data-answer="4.001"><input inputmode="decimal" autocomplete="off" aria-label="f(2.001)" placeholder="?"></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="try-controls">
-              <button type="button" id="check">Check my numbers</button>
-              <button type="button" class="secondary" id="reveal">Show me the answers</button>
-            </div>
-            <p class="feedback" id="feedback" aria-live="polite"></p>
-          </div>
-        </div>
-
-        <div id="payoff">
-          <p>From the left, the outputs go 3.9, 3.99, 3.999, … From the right they come down 4.1, 4.01, 4.001, … Both sides are being herded toward one number: 4.</p>
-          <figure>
-            <svg class="graph" id="graph" viewBox="0 0 360 230" role="img" aria-labelledby="graph-title">
-              <title id="graph-title">Graph of f: the straight line y = x + 2, with an open circle at (2, 4) where the function has no value.</title>
-              <line class="axis" x1="30" y1="200" x2="340" y2="200"/>
-              <path class="axis" d="M340 200 l-7 -3.5 v7 z" fill="var(--muted)" stroke="none"/>
-              <line class="axis" x1="60" y1="215" x2="60" y2="14"/>
-              <path class="axis" d="M60 14 l-3.5 7 h7 z" fill="var(--muted)" stroke="none"/>
-              <text x="348" y="205" font-style="italic" font-size="16">x</text>
-              <text x="55" y="9" font-style="italic" font-size="16">y</text>
-              <line class="guide" x1="60" y1="96" x2="190" y2="96"/>
-              <line class="guide" x1="190" y1="96" x2="190" y2="200"/>
-              <text x="42" y="101" font-size="14">4</text>
-              <text x="186" y="219" font-size="14">2</text>
-              <line x1="190" y1="196" x2="190" y2="204" stroke="var(--muted)"/>
-              <line x1="56" y1="96" x2="64" y2="96" stroke="var(--muted)"/>
-              <path class="curve" id="curve" d="M40 148 L330 32"/>
-              <circle class="walker" id="walk-l" r="4.2" cx="40" cy="148"/>
-              <circle class="walker" id="walk-r" r="4.2" cx="330" cy="32"/>
-              <circle class="hole" cx="190" cy="96" r="5.5"/>
-            </svg>
-            <figcaption>The graph of <span class="m">f</span>: a straight line with exactly one point punched out.</figcaption>
-          </figure>
-
-          <div class="box key">
-            <div class="box-head">
-              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="m10 2 2.35 5.1 5.4.55-4.05 3.7 1.15 5.4L10 14l-4.85 2.75 1.15-5.4L2.25 7.65l5.4-.55z"/></svg>
-              The whole idea in one line
-            </div>
-            <div class="box-body">
-              <p>A limit answers “where is this function <em>headed</em>?”, not “where does it <em>land</em>?” Here it’s headed to 4 and lands nowhere. You just computed a limit; everything else is naming:</p>
-              <p class="display-math">lim<sub style="font-size:.6em;font-style:italic">x→2</sub> <span class="m">f</span>(<span class="m">x</span>) = 4</p>
-            </div>
-          </div>
-          <p class="source">From Calc 1, Chapter 1: Limits &amp; Continuity, pages&nbsp;9–11</p>
-        </div>
-      </section>
-
-      <section aria-labelledby="pages">
-        <h2 id="pages">What the pages look like</h2>
-        <p>These are pages 10, 12 and 13 as they appear in the PDF, with no edits. Click one to open the book at that page.</p>
-      </section>
-    </main>
-  </div>
-
-  <ul class="pages" aria-label="Sample pages from Chapter 1">
-    <li><a href="/calculus-2-from-zero.pdf#page=11" target="_blank" rel="noopener">
-      <img src="/pages/page-11.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 10: the table of values approaching 2, filled in, and a Key idea box introducing lim as x goes to 2 of f(x) equals 4.">
-      <span class="cap"><b>Page 10</b>The table, filled in, and the notation once you’ve earned it.</span></a></li>
-    <li><a href="/calculus-2-from-zero.pdf#page=13" target="_blank" rel="noopener">
-      <img src="/pages/page-13.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 12: one-sided limits, explained with a parking garage that charges 5 dollars up to two hours and 12 dollars after, with a step graph.">
-      <span class="cap"><b>Page 12</b>One-sided limits, through a parking garage’s prices.</span></a></li>
-    <li><a href="/calculus-2-from-zero.pdf#page=14" target="_blank" rel="noopener">
-      <img src="/pages/page-14.webp" width="880" height="1138" loading="lazy" decoding="async" alt="Page 13: a Watch out box explaining that DNE is a finding, not an error, followed by a worked piecewise example and a table for 1 over x squared.">
-      <span class="cap"><b>Page 13</b>A “Watch out” box: DNE is a finding, not a mistake.</span></a></li>
-  </ul>
-
-  <div class="page">
-    <section aria-labelledby="anatomy">
-      <h2 id="anatomy">How every chapter works</h2>
-      <p>Each chapter opens with why the idea exists and where it gets used, then works through it. Read them in order, since each one leans on the ones before. These boxes show up throughout:</p>
-      <dl class="anatomy">
-        <div><dt><span class="tag try" style="--c:var(--try)">Try it yourself</span></dt><dd>A problem to attempt before you’re shown how. Getting stuck on it is the point.</dd></div>
-        <div><dt><span class="tag see">See it</span></dt><dd>A diagram, with a walkthrough of what to look at.</dd></div>
-        <div><dt><span class="tag" style="--c:var(--key)">Key idea</span></dt><dd>The one thing from a section worth remembering.</dd></div>
-        <div><dt><span class="tag" style="--c:var(--warn)">Watch out</span></dt><dd>The specific wrong ideas that trip people up at that spot.</dd></div>
-        <div><dt><span class="tag video">Want it on video?</span></dt><dd>The matching Professor Leonard lecture, in case a second voice is what makes it click.</dd></div>
-      </dl>
-      <p style="margin-top:1.2rem">Each chapter ends with three practice problems with hints, a five-problem workout, and the answers.</p>
-    </section>
-
-    <section aria-labelledby="contents">
+      <section aria-labelledby="contents">
       <h2 id="contents">What’s inside</h2>
       <p>A start-here page and 19 chapters. Page numbers are the book’s own, and each title opens the PDF at that chapter.</p>
       <div class="toc">
@@ -477,98 +246,12 @@
         </div>
       </div>
     </section>
-
-    <section aria-labelledby="why">
-      <h2 id="why">Why I wrote it</h2>
-      <p>I’m a CS student and a self-taught developer. Calc 2 never clicked for me the way it gets presented, so I ended up teaching it to myself. It took a long time. I’d sit with a problem, get stuck, and make myself stay stuck for a while before I let myself go look anything up.</p>
-      <p>The ideas themselves were never that hard. It was the order everything got introduced in. Integration by parts gets handed to you as a formula plus a mnemonic, and nobody mentions that it’s just the product rule run backwards, which is the whole reason it exists and the only way I could ever remember it. So I started writing things like that down as I went, and eventually it turned into this book.</p>
-      <p>I used AI tools to help write and typeset it, since English isn’t my first language. The notes, the structure, which explanations made it in, and the checking of every answer are mine. If you find something wrong or badly explained, tell me the page and I’ll fix it.</p>
-    </section>
-
-    <section aria-labelledby="yours">
-      <h2 id="yours">Free to read, share and remix</h2>
-      <p>The book is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>. Print it for a class, mirror it, translate it, or pull chapters out. Just keep my name on it and note anything you changed.</p>
-      <p>Found a typo, a wrong answer, or a spot where you got stuck? Those are the most useful things you can send me. <a href="https://blog.shriyash.dev/feedback?from=calculus-book">Send feedback</a>.</p>
-      <div class="actions" style="margin-top:1.6rem">
-        <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/><path d="M10 5.1v11"/></svg>
-          Start reading
-        </a>
-        <a class="btn btn-plain" href="/calculus-2-from-zero.pdf" download>Download the PDF</a>
-      </div>
-    </section>
+    </main>
 
     <footer class="colophon">
       <span>© Shriyash Ghimire · CC BY 4.0</span>
       <a href="https://blog.shriyash.dev">Shriyash Uncompiled</a>
     </footer>
   </div>
-
-  <script>
-    (function () {
-      var cells = Array.prototype.slice.call(document.querySelectorAll('#limit-table .cell'));
-      var feedback = document.getElementById('feedback');
-      var graph = document.getElementById('graph');
-      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function grade(cell) {
-        var input = cell.querySelector('input');
-        var raw = input.value.trim().replace(',', '.');
-        if (!raw) { cell.removeAttribute('data-state'); return null; }
-        var ok = Math.abs(parseFloat(raw) - parseFloat(cell.dataset.answer)) < 1e-9;
-        cell.dataset.state = ok ? 'right' : 'wrong';
-        return ok;
-      }
-
-      var walked = false;
-      function walk() {
-        if (walked || reduce) return;
-        walked = true;
-        var l = document.getElementById('walk-l'), r = document.getElementById('walk-r');
-        graph.classList.add('walking');
-        var start = null, dur = 2600;
-        var L0 = [40, 148], R0 = [330, 32], H = [190, 96];
-        function step(t) {
-          if (!start) start = t;
-          var p = Math.min(1, (t - start) / dur);
-          var e = 1 - Math.pow(1 - p, 4);
-          var k = 0.965 * e;
-          l.setAttribute('cx', L0[0] + (H[0] - L0[0]) * k); l.setAttribute('cy', L0[1] + (H[1] - L0[1]) * k);
-          r.setAttribute('cx', R0[0] + (H[0] - R0[0]) * k); r.setAttribute('cy', R0[1] + (H[1] - R0[1]) * k);
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-
-      document.getElementById('check').addEventListener('click', function () {
-        var right = 0, wrong = 0, blank = 0;
-        cells.forEach(function (c) { var g = grade(c); if (g === true) right++; else if (g === false) wrong++; else blank++; });
-        feedback.classList.remove('ok');
-        if (right === cells.length) {
-          feedback.textContent = 'All six right. Now look at where both rows are heading.';
-          feedback.classList.add('ok');
-          walk();
-        } else if (right + wrong === 0) {
-          feedback.textContent = 'Fill in at least two first. Plug each x into (x² − 4) ÷ (x − 2).';
-        } else if (wrong) {
-          feedback.textContent = wrong + (wrong === 1 ? ' doesn’t' : ' don’t') + ' match yet. Try factoring the top: x² − 4 = (x − 2)(x + 2).';
-        } else {
-          feedback.textContent = right + ' right so far, ' + blank + ' to go.';
-          feedback.classList.add('ok');
-        }
-      });
-
-      document.getElementById('reveal').addEventListener('click', function () {
-        cells.forEach(function (c) { c.querySelector('input').value = c.dataset.answer; grade(c); });
-        feedback.classList.remove('ok');
-        feedback.textContent = 'Here’s what the machine says. Read on below.';
-        walk();
-      });
-
-      cells.forEach(function (c) {
-        c.querySelector('input').addEventListener('input', function () { c.removeAttribute('data-state'); });
-      });
-    })();
-  </script>
 </body>
 </html>
