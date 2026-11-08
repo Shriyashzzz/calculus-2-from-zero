@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculus 2 From Zero · Shriyash Ghimire</title>
+  <meta name="description" content="A free, start-from-zero guide to Calculus 2, with all the Calc 1 you need. Worked examples, practice with hints, diagrams. CC BY 4.0.">
+  <meta property="og:title" content="You think you're fucked at calculus. You're not.">
+  <meta property="og:description" content="Calculus 2 From Zero: a free, start-from-zero guide to Calc 2, with all the Calc 1 you need.">
+  <meta property="og:type" content="book">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%233c4696'/><text x='16' y='25' font-size='24' text-anchor='middle' fill='%23f2b705' font-family='serif'>∫</text></svg>">
+  <style>
+    :root {
+      --theme: rgb(60, 70, 150);
+      --theme-dark: rgb(34, 40, 92);
+      --accent: #f2b705;
+      --ink: #1d1d24;
+      --muted: #5b5d70;
+      --paper: #f7f7fb;
+      --rule: #dcdde8;
+      --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e8e8f0;
+        --muted: #a3a5bd;
+        --paper: #14151f;
+        --rule: #2c2e44;
+        --theme: rgb(140, 150, 230);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--paper);
+    }
+    a { color: var(--theme); }
+    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    /* ---------- hero: echoes the book's cover ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background-color: var(--theme-dark);
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      border-left: 14px solid var(--accent);
+    }
+    .hero::after {
+      content: "∫";
+      position: absolute;
+      right: -0.05em;
+      top: -0.2em;
+      font-size: clamp(14rem, 34vw, 26rem);
+      line-height: 1;
+      color: rgba(255,255,255,.06);
+      pointer-events: none;
+    }
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
+    .hero .wrap { position: relative; z-index: 1; padding-top: 4.5rem; padding-bottom: 4rem; }
+    .kicker {
+      font-family: var(--mono);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin: 0 0 1.25rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.1;
+      margin: 0 0 .4em;
+      font-weight: 700;
+    }
+    h1 span { display: block; color: var(--accent); }
+    .lede { font-size: 1.2rem; max-width: 36rem; color: #dfe1f5; margin: 0 0 2rem; }
+    .byline { font-family: var(--mono); font-size: .85rem; color: #b9bce0; margin: 0 0 2rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.3rem;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .12s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #1d1d24; }
+    .btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+    .meta { font-family: var(--mono); font-size: .75rem; color: #9fa3d1; margin-top: 1rem; }
+
+    /* ---------- body ---------- */
+    main section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+    main section:last-child { border-bottom: 0; }
+    .label {
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--theme);
+      margin: 0 0 .5rem;
+    }
+    h2 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 1rem; }
+    h3 { font-size: 1.15rem; margin: 2rem 0 .25rem; }
+    h3 small { font-family: var(--mono); font-size: .75rem; font-weight: 400; color: var(--muted); margin-left: .4rem; }
+    ol.chapters { list-style: none; padding: 0; margin: .5rem 0 0; }
+    ol.chapters li {
+      display: grid;
+      grid-template-columns: 3.6rem 1fr;
+      gap: .75rem;
+      padding: .55rem 0;
+      border-top: 1px dashed var(--rule);
+    }
+    ol.chapters .num { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding-top: .2rem; }
+    ol.chapters strong { display: block; font-weight: 600; }
+    ol.chapters span.what { color: var(--muted); font-size: 1rem; }
+    .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .track { border-left: 4px solid var(--theme); padding: .25rem 0 .25rem 1rem; }
+    .track p { margin: .25rem 0 0; color: var(--muted); font-size: 1rem; }
+    .callout { border-left: 4px solid var(--accent); padding: .25rem 0 .25rem 1rem; margin: 1.25rem 0; }
+    footer { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding: 2rem 0 3rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    @media (max-width: 560px) {
+      .tracks { grid-template-columns: 1fr; }
+      .hero { border-left-width: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">// a free book · calculus 2 from zero</p>
+      <h1>You think you're fucked at calculus. <span>You're not.</span></h1>
+      <p class="lede">A start-from-zero guide to Calculus 2, with all the Calc 1 you need built in. Every chapter has a pep talk, worked examples, practice problems with hints, and diagrams.</p>
+      <p class="byline">by Shriyash Ghimire</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">Read it online →</a>
+        <a class="btn btn-ghost" href="/calculus-2-from-zero.pdf" download>Download PDF</a>
+      </div>
+      <p class="meta">PDF · 0.8 MB · 20 chapters · CC BY 4.0</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <p class="label">How to use it</p>
+        <h2>Read top to bottom. Get stuck on purpose.</h2>
+        <p>Start with <em>Start Here</em>. It explains how the colored boxes work and sets the mindset. Each chapter builds on the ones before it, and each one has an easy practice problem and a harder one with hints.</p>
+        <div class="callout">One rule before you start: when a problem gets hard, sit in the stuck for a minute before you peek at the answer. That discomfort is the part doing the work.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="label">What's inside</p>
+        <h2>20 chapters, from limits to Taylor series</h2>
+
+        <h3>00 · Start Here <small>read first</small></h3>
+        <ol class="chapters">
+          <li><span class="num">00</span><div><strong>The field guide</strong><span class="what">How the boxes work, and why getting stuck is the point. No math needed.</span></div></li>
+        </ol>
+
+        <h3>Calculus 1, the foundation</h3>
+        <ol class="chapters">
+          <li><span class="num">C1.1</span><div><strong>Limits &amp; continuity</strong><span class="what">One-sided limits, continuity, L'Hôpital</span></div></li>
+          <li><span class="num">C1.2</span><div><strong>Derivatives</strong><span class="what">The derivative as a limit, the rules, the chain rule</span></div></li>
+          <li><span class="num">C1.3</span><div><strong>Applications of derivatives</strong><span class="what">Optimization, related rates, curve shape</span></div></li>
+          <li><span class="num">C1.4</span><div><strong>Integrals &amp; the FTC</strong><span class="what">The integral, the Fundamental Theorem, substitution</span></div></li>
+        </ol>
+
+        <h3>Unit A · Techniques of integration</h3>
+        <ol class="chapters">
+          <li><span class="num">C2.1</span><div><strong>Integration by parts</strong><span class="what">Reverse product rule, LIATE, tabular, boomerang</span></div></li>
+          <li><span class="num">C2.2</span><div><strong>Trigonometric integrals</strong><span class="what">Powers of sin, cos, tan, sec</span></div></li>
+          <li><span class="num">C2.3</span><div><strong>Trigonometric substitution</strong><span class="what">The three triangle substitutions</span></div></li>
+          <li><span class="num">C2.4</span><div><strong>Partial fractions</strong><span class="what">Splitting rational functions to integrate</span></div></li>
+          <li><span class="num">C2.5</span><div><strong>Improper integrals</strong><span class="what">Infinite limits, the p-test for integrals</span></div></li>
+        </ol>
+
+        <h3>Unit B · Applications of integration</h3>
+        <ol class="chapters">
+          <li><span class="num">C2.6</span><div><strong>Area between curves</strong><span class="what">dx vs dy strips</span></div></li>
+          <li><span class="num">C2.7</span><div><strong>Volumes of revolution</strong><span class="what">Disk, washer, and shell methods</span></div></li>
+          <li><span class="num">C2.8</span><div><strong>Arc length &amp; surface area</strong><span class="what">Length of a curve, surface of revolution</span></div></li>
+          <li><span class="num">C2.9</span><div><strong>Work</strong><span class="what">Springs, lifting ropes and cables, pumping tanks</span></div></li>
+        </ol>
+
+        <h3>Unit C · Sequences &amp; series</h3>
+        <ol class="chapters">
+          <li><span class="num">C2.10</span><div><strong>Sequences</strong><span class="what">Infinite lists, limits of sequences, rⁿ, squeeze</span></div></li>
+          <li><span class="num">C2.11</span><div><strong>Series &amp; the divergence test</strong><span class="what">Partial sums, geometric, telescoping, harmonic</span></div></li>
+          <li><span class="num">C2.12</span><div><strong>Integral test &amp; comparison</strong><span class="what">p-series, direct and limit comparison</span></div></li>
+          <li><span class="num">C2.13</span><div><strong>Alternating, ratio &amp; root tests</strong><span class="what">Absolute vs conditional convergence, picking a test</span></div></li>
+        </ol>
+
+        <h3>Unit D · Power series &amp; Taylor</h3>
+        <ol class="chapters">
+          <li><span class="num">C2.14</span><div><strong>Power series</strong><span class="what">Infinite polynomials, radius and interval of convergence</span></div></li>
+          <li><span class="num">C2.15</span><div><strong>Taylor &amp; Maclaurin series</strong><span class="what">The formula, famous expansions, approximation</span></div></li>
+        </ol>
+
+        <div class="tracks">
+          <div class="track"><strong>Integration track</strong><p>Unit A → Unit B. Techniques first, then what they're for.</p></div>
+          <div class="track"><strong>Series track</strong><p>Unit C → Unit D. Can run in parallel once Calc 1 clicks.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="label">It's yours</p>
+        <h2>Free to read, share, and remix</h2>
+        <p>The book is released under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>. Print it for a class, mirror it, translate it, or pull chapters out. Just keep my name on it and note anything you changed.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <p class="label">Feedback</p>
+        <h2>Found a typo? Got stuck somewhere?</h2>
+        <p>Tell me. Confusing explanations, wrong answers, and "this finally clicked" all help make the next version better.</p>
+        <p><a class="btn btn-primary" href="https://blog.shriyash.dev/feedback?from=calculus-book">Send feedback →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Shriyash Ghimire · CC BY 4.0</span>
+      <a href="https://blog.shriyash.dev">&lt;Shriyash Uncompiled /&gt;</a>
+    </div>
+  </footer>
+</body>
+</html>
