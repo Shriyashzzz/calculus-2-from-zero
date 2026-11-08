@@ -18,7 +18,6 @@
     @font-face { font-family: "Bonum"; src: url("/fonts/texgyrebonum-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
     @font-face { font-family: "Poppins"; src: url("/fonts/poppins-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 
-    /* The book's own palette, sampled from the PDF. */
     :root {
       --paper: #ffffff;
       --ink: #262228;
@@ -64,14 +63,12 @@
     a:hover { text-decoration-thickness: 2px; }
     :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
     em, i { font-style: italic; }
-    .m { font-style: italic; white-space: nowrap; }           /* a math variable */
-    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .82em; line-height: 1.15; margin: 0 .12em; }
+    .m { font-style: italic; white-space: nowrap; }    .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .82em; line-height: 1.15; margin: 0 .12em; }
     .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 .2em .05em; }
     .frac > span:last-child { padding: .05em .2em 0; }
 
     .page { max-width: var(--measure); margin: 0 auto; padding: 0 1.4rem; }
 
-    /* Running header, as on every page of the book */
     .running {
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
       font: 400 .875rem/1.4 var(--sans); font-weight: 700;
@@ -118,7 +115,6 @@
     .lead p { margin: 0 0 1em; }
     .lead strong { font-weight: 700; }
 
-    /* Section headings: Poppins, teal, hairline under, as in the book */
     h2 {
       font-size: clamp(1.55rem, 4vw, 1.9rem);
       line-height: 1.2;
@@ -129,7 +125,6 @@
     }
     p { margin: 0 0 1em; hanging-punctuation: first; }
 
-    /* The book's boxes: coloured header strip + tinted body, rounded, 1px outline */
     .box { border: 1.5px solid var(--c); border-radius: 12px; background: var(--bg); margin: 1.8rem 0; overflow: hidden; }
     .box > .box-head {
       display: flex; align-items: center; gap: .5rem;
@@ -145,7 +140,6 @@
 
     .display-math { text-align: center; margin: .3rem 0 1.1rem; font-size: 1.2rem; }
 
-    /* The try-it tables: one column of inputs per side */
     .tables { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem clamp(1.5rem, 6vw, 4rem); margin: .4rem 0 1.2rem; }
     .limit-table { border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
     .limit-table caption { font: 700 .85rem/1.3 var(--sans); color: var(--try); padding-bottom: .45rem; white-space: nowrap; }
@@ -196,7 +190,6 @@
     .graph.walking .walker { opacity: 1; }
     .source { font: 700 .8rem/1.4 var(--sans); color: var(--muted); text-align: right; margin: -.5rem 0 0; }
 
-    /* Real pages from the PDF */
     .pages {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -221,7 +214,6 @@
       .pages li { scroll-snap-align: center; }
     }
 
-    /* Contents page, set like the book's */
     .toc { margin: 1rem 0 0; }
     .toc h3 { font-size: 1rem; margin: 2rem 0 .3rem; display: flex; justify-content: space-between; color: var(--ink); }
     .toc h3 .pg { color: var(--muted); }
@@ -243,7 +235,6 @@
     .toc li a:hover .title { color: var(--teal-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
     .toc li a:hover .pg { color: var(--teal-ink); }
 
-    /* The anatomy of a chapter, using the book's own box colours */
     .anatomy { margin: 1rem 0 0; padding: 0; }
     .anatomy div { display: grid; grid-template-columns: 11.5rem 1fr; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--rule); }
     .anatomy div:last-child { border-bottom: 1px solid var(--rule); }
@@ -252,7 +243,6 @@
     .tag { display: inline-block; font: 700 .85rem/1 var(--sans); color: var(--paper); background: var(--c); border-radius: 6px; padding: .45rem .65rem; }
     .tag.see { --c: #4b4f9e; }
     .tag.video { --c: #6b4a8a; }
-    .tag.plain { --c: var(--muted); }
     @media (prefers-color-scheme: dark) { .tag.see { --c: #a7aaf0; } .tag.video { --c: #c3a5e0; } }
     @media (max-width: 560px) { .anatomy div { grid-template-columns: none; gap: .4rem; } }
 
@@ -311,8 +301,8 @@
       <p class="facts"><span>209 pages</span><span>19 chapters</span><span>0.8 MB</span><span>CC BY 4.0</span></p>
 
       <section class="lead" aria-label="The idea behind the book">
-        <p>Most calculus goes symbols first, meaning later, if there’s time. This book does it the other way round. Before any formula, each chapter tells you <strong>why the idea exists</strong>, what question forced someone to invent it, and <strong>what it’s for</strong>.</p>
-        <p>It also makes you do the maths, so here’s the first thing Chapter 1 asks you to try.</p>
+        <p>Most calculus goes symbols first, meaning later, if there’s time. This book does it the other way around. Before any formula, each chapter tells you <strong>why the idea exists</strong>, what question forced someone to invent it, and <strong>what it’s for</strong>.</p>
+        <p>It also makes you do the math. Here’s the first thing Chapter 1 asks you to try.</p>
       </section>
 
       <section aria-labelledby="first-limit">
@@ -417,11 +407,10 @@
   <div class="page">
     <section aria-labelledby="anatomy">
       <h2 id="anatomy">How every chapter works</h2>
-      <p>Read the book top to bottom, since each chapter leans on the ones before it. The coloured boxes are the same everywhere, so you’ll know them on sight.</p>
+      <p>Each chapter opens with why the idea exists and where it gets used, then works through it. Read them in order, since each one leans on the ones before. These boxes show up throughout:</p>
       <dl class="anatomy">
-        <div><dt><span class="tag plain">Why it exists</span></dt><dd>The question that forced someone to invent the idea, and where you’d actually use it. This always comes before the formula.</dd></div>
-        <div><dt><span class="tag try" style="--c:var(--try)">Try it yourself</span></dt><dd>Stop, attempt it, and get stuck on purpose. It comes before the explanation, not after.</dd></div>
-        <div><dt><span class="tag see">See it</span></dt><dd>A diagram, walked through line by line instead of just dropped on the page.</dd></div>
+        <div><dt><span class="tag try" style="--c:var(--try)">Try it yourself</span></dt><dd>A problem to attempt before you’re shown how. Getting stuck on it is the point.</dd></div>
+        <div><dt><span class="tag see">See it</span></dt><dd>A diagram, with a walkthrough of what to look at.</dd></div>
         <div><dt><span class="tag" style="--c:var(--key)">Key idea</span></dt><dd>The one thing from a section worth remembering.</dd></div>
         <div><dt><span class="tag" style="--c:var(--warn)">Watch out</span></dt><dd>The specific wrong ideas that trip people up at that spot.</dd></div>
         <div><dt><span class="tag video">Want it on video?</span></dt><dd>The matching Professor Leonard lecture, in case a second voice is what makes it click.</dd></div>
@@ -490,13 +479,10 @@
     </section>
 
     <section aria-labelledby="why">
-      <h2 id="why">Why this book exists</h2>
-      <blockquote>
-        <p>You will probably forget most of the actual content in two years. The chain rule, the ratio test, the exact formula for arc length. Gone. And that is completely fine, because the content was never the point.</p>
-        <p>Here is the point. The thing you truly keep from learning something hard is the proof you gave yourself that you can do it.</p>
-        <footer>From “Start Here”, page 2</footer>
-      </blockquote>
-      <p><strong>How it was made.</strong> The notes, the structure, which explanations made it in, and the checking of every answer are mine, from learning this material myself. I used AI tools to help write and typeset it, because English isn’t my first language and I wanted the explanations to read naturally. If you find something wrong or badly explained, tell me the page and I’ll fix it.</p>
+      <h2 id="why">Why I wrote it</h2>
+      <p>I’m a CS student and a self-taught developer. Calc 2 never clicked for me the way it gets presented, so I ended up teaching it to myself. It took a long time. I’d sit with a problem, get stuck, and make myself stay stuck for a while before I let myself go look anything up.</p>
+      <p>The ideas themselves were never that hard. It was the order everything got introduced in. Integration by parts gets handed to you as a formula plus a mnemonic, and nobody mentions that it’s just the product rule run backwards, which is the whole reason it exists and the only way I could ever remember it. So I started writing things like that down as I went, and eventually it turned into this book.</p>
+      <p>I used AI tools to help write and typeset it, since English isn’t my first language. The notes, the structure, which explanations made it in, and the checking of every answer are mine. If you find something wrong or badly explained, tell me the page and I’ll fix it.</p>
     </section>
 
     <section aria-labelledby="yours">
@@ -506,7 +492,7 @@
       <div class="actions" style="margin-top:1.6rem">
         <a class="btn btn-primary" href="/calculus-2-from-zero.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/><path d="M10 5.1v11"/></svg>
-          Start at page 1
+          Start reading
         </a>
         <a class="btn btn-plain" href="/calculus-2-from-zero.pdf" download>Download the PDF</a>
       </div>
@@ -534,7 +520,6 @@
         return ok;
       }
 
-      // Walk a dot along the line from each side toward the hole, stopping just short.
       var walked = false;
       function walk() {
         if (walked || reduce) return;
@@ -546,8 +531,8 @@
         function step(t) {
           if (!start) start = t;
           var p = Math.min(1, (t - start) / dur);
-          var e = 1 - Math.pow(1 - p, 4);      // ease-out: fast at first, creeping at the end
-          var k = 0.965 * e;                    // never actually lands on the hole
+          var e = 1 - Math.pow(1 - p, 4);
+          var k = 0.965 * e;
           l.setAttribute('cx', L0[0] + (H[0] - L0[0]) * k); l.setAttribute('cy', L0[1] + (H[1] - L0[1]) * k);
           r.setAttribute('cx', R0[0] + (H[0] - R0[0]) * k); r.setAttribute('cy', R0[1] + (H[1] - R0[1]) * k);
           if (p < 1) requestAnimationFrame(step);
